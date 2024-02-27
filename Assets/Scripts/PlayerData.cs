@@ -6,32 +6,47 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData Instance;
+    public string playerName; // Player name field
+    public string highscoreName;
+    public int highscore; // Highscore field
+
     private void Awake()
     {
         if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        LoadPlayerData();
     }
 
+    [System.Serializable]
     public class SaveData
     {
-        public string name;
+        public string playerName;
+        public string highscoreName;
         public int highscore;
     }
-    public void SaveName()
+
+    public void SavePlayerData()
     {
         SaveData data = new SaveData();
-        data.name = name;
+        data.playerName = playerName;
+        data.highscoreName = highscoreName;
+        data.highscore = highscore;
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
-    public void LoadName()
+    public void LoadPlayerData()
     {
         string path = Application.persistentDataPath + "/savefile.json";
 
@@ -39,8 +54,9 @@ public class PlayerData : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            name = data.name;
+            playerName = data.playerName;
+            highscoreName = data.highscoreName;
+            highscore = data.highscore;
         }
-
     }
 }

@@ -476,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dbed38226b8a8458710011f19daaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  highscore: 0
 --- !u!4 &924231188
 Transform:
   m_ObjectHideFlags: 0
@@ -834,6 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5d5519e0fadb5438d812b6cb7652a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 1364629696}
 --- !u!1 &1364629694
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +956,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1302546709}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: saveName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
